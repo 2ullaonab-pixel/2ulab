@@ -1,0 +1,17 @@
+# Runtime / generated state — not user customization
+state/
+.pristine/
+.merge-pending.json
+schedule.json.new
+.install-manifest.json
+
+# Safety net: never commit secrets, tokens, credentials, logs, or DBs
+*token*
+*secret*
+*credential*
+*.key
+*.pem
+*.log
+*.db
+*.db-shm
+*.db-wal

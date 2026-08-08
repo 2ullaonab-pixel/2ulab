@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# cys-update — javis_update_menu.py 얇은 래퍼. 새 파일(비임베드) — 업데이트 불가침.
+set -euo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CYS_PY="$(command -v python3 || command -v python || command -v py || true)"
+if [ -z "$CYS_PY" ]; then
+  echo "[cys-update] python(3) 부재 — 실행 불가" >&2
+  exit 1
+fi
+
+exec "$CYS_PY" "$HERE/javis_update_menu.py" "$@"
