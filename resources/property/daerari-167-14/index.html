@@ -1,0 +1,835 @@
+<title>대라리 167-14 매도 실행판</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#EFF2EE; --surface:#FAFCF9; --surface-2:#E4EAE3; --sunk:#E9EEE8;
+  --ink:#151E1B; --ink-2:#3D4A45; --ink-3:#6E7B76;
+  --line:#C4CEC8; --line-2:#DCE3DC;
+  --accent:#0B5D51; --accent-soft:#D6E5E0; --accent-ink:#0B5D51;
+  --seal:#A8432B; --seal-soft:#F0DDD6;
+  --good:#2F6B4F; --warn:#8A6420;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --serif:"Gowun Batang","Nanum Myeongjo","Apple SD Gothic Neo",serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1412; --surface:#161E1B; --surface-2:#1E2825; --sunk:#131B19;
+    --ink:#E2E9E4; --ink-2:#AEBAB4; --ink-3:#7C8A84;
+    --line:#2B3835; --line-2:#212C29;
+    --accent:#5CBBA6; --accent-soft:#16302A; --accent-ink:#7FCDBA;
+    --seal:#DB7B5F; --seal-soft:#31201A;
+    --good:#6CB790; --warn:#C7A163;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1412; --surface:#161E1B; --surface-2:#1E2825; --sunk:#131B19;
+  --ink:#E2E9E4; --ink-2:#AEBAB4; --ink-3:#7C8A84;
+  --line:#2B3835; --line-2:#212C29;
+  --accent:#5CBBA6; --accent-soft:#16302A; --accent-ink:#7FCDBA;
+  --seal:#DB7B5F; --seal-soft:#31201A;
+  --good:#6CB790; --warn:#C7A163;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:16px; line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px; margin:0 auto; padding:0 24px 96px}
+h1,h2,h3{text-wrap:balance; margin:0}
+p{margin:0}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+/* ---------- header ---------- */
+.masthead{border-bottom:1px solid var(--line); background:var(--surface)}
+.masthead-in{max-width:1060px; margin:0 auto; padding:34px 24px 0; display:flex; flex-direction:column; gap:26px}
+.plate{display:flex; flex-wrap:wrap; align-items:baseline; gap:14px}
+.jibun{
+  font-family:var(--mono); font-weight:600; font-size:clamp(30px,6vw,46px); letter-spacing:.01em;
+  color:var(--ink); line-height:1; padding:10px 14px; border:1.5px solid var(--ink); background:var(--paper);
+}
+.plate-meta{display:flex; flex-direction:column; gap:2px}
+.plate-meta .ko{font-family:var(--serif); font-size:clamp(19px,3.2vw,25px); font-weight:700; line-height:1.35}
+.plate-meta .road{font-size:13.5px; color:var(--ink-3); font-family:var(--mono)}
+.lede{max-width:62ch; font-size:16.5px; color:var(--ink-2)}
+.lede b{color:var(--ink); font-weight:600}
+
+.figure{margin:0; border-top:1px solid var(--line-2); padding-top:18px; padding-bottom:20px}
+.figure svg{width:100%; height:auto; display:block}
+.figure figcaption{margin-top:8px; font-family:var(--mono); font-size:11.5px; color:var(--ink-3); letter-spacing:.02em}
+
+/* ---------- sections ---------- */
+section{padding-top:56px}
+.shead{display:flex; align-items:baseline; gap:14px; border-bottom:1.5px solid var(--ink); padding-bottom:9px; margin-bottom:24px; flex-wrap:wrap}
+.snum{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--seal); letter-spacing:.1em; padding-top:4px}
+.shead h2{font-family:var(--serif); font-size:clamp(22px,3.6vw,29px); font-weight:700; line-height:1.3; flex:1; min-width:200px}
+.shead .note{font-size:12.5px; color:var(--ink-3); font-family:var(--mono)}
+.sintro{max-width:64ch; color:var(--ink-2); margin-bottom:22px; font-size:15.5px}
+
+/* ---------- generic blocks ---------- */
+.card{background:var(--surface); border:1px solid var(--line); padding:20px 22px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px}
+.stack{display:flex; flex-direction:column; gap:16px}
+.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); font-weight:500}
+.h3{font-family:var(--sans); font-weight:600; font-size:16px; letter-spacing:-.01em}
+.small{font-size:13.5px; color:var(--ink-2); line-height:1.65}
+.tiny{font-size:12.5px; color:var(--ink-3); line-height:1.6}
+
+.factlist{display:flex; flex-direction:column; gap:0; margin:0; padding:0; list-style:none}
+.factlist li{display:flex; gap:14px; padding:9px 0; border-bottom:1px dotted var(--line); font-size:14.5px; align-items:baseline}
+.factlist li:last-child{border-bottom:0}
+.factlist .k{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); min-width:78px; letter-spacing:.03em; flex-shrink:0; padding-top:2px}
+.factlist .v{color:var(--ink-2)}
+.factlist .v b{color:var(--ink); font-weight:600}
+
+.pill{display:inline-block; font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.05em; padding:2px 7px; border:1px solid currentColor; vertical-align:middle}
+.pill.ok{color:var(--good)} .pill.need{color:var(--seal)} .pill.mid{color:var(--warn)}
+
+/* ---------- calculator ---------- */
+.calc{display:grid; grid-template-columns:minmax(280px,1fr) minmax(280px,1.05fr); gap:16px; align-items:start}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.fields{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:12px 14px}
+.f{display:flex; flex-direction:column; gap:5px}
+.f label{font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; color:var(--ink-3); text-transform:uppercase}
+.f input{
+  font-family:var(--mono); font-size:15px; font-weight:500; color:var(--ink);
+  background:var(--sunk); border:1px solid var(--line); border-radius:2px; padding:8px 10px; width:100%;
+  font-variant-numeric:tabular-nums;
+}
+.f input::placeholder{color:var(--ink-3); font-weight:400}
+.f input:focus{border-color:var(--accent); background:var(--surface)}
+
+.readout{background:var(--ink); color:var(--paper); border:1px solid var(--ink); padding:20px 22px; display:flex; flex-direction:column; gap:2px}
+:root[data-theme="dark"] .readout,
+:root:not([data-theme="light"]) .readout{background:var(--surface-2); color:var(--ink); border-color:var(--line)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .readout{background:var(--ink); color:var(--paper); border-color:var(--ink)}}
+.readout .eyebrow{color:inherit; opacity:.6}
+.ro-row{display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0; border-bottom:1px solid rgba(128,148,140,.32)}
+.ro-row:last-child{border-bottom:0}
+.ro-row .k{font-size:13px; opacity:.72}
+.ro-row .v{font-family:var(--mono); font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+.ro-row.hero .v{font-size:26px; color:var(--accent-ink)}
+:root[data-theme="dark"] .ro-row.hero .v{color:var(--accent)}
+.ro-row .v small{font-size:11.5px; font-weight:400; opacity:.65; display:block; letter-spacing:0}
+
+/* ---------- tabs / copy ---------- */
+.tabs{display:flex; flex-wrap:wrap; gap:0; border-bottom:1px solid var(--line); margin-bottom:0}
+.tab{
+  font-family:var(--sans); font-size:13.5px; font-weight:500; color:var(--ink-3);
+  background:transparent; border:0; border-bottom:2px solid transparent; padding:10px 15px; cursor:pointer; margin-bottom:-1px;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--seal); font-weight:600}
+.panel{display:none; border:1px solid var(--line); border-top:0; background:var(--surface)}
+.panel.on{display:block}
+.panel-head{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:12px 18px; border-bottom:1px dotted var(--line); flex-wrap:wrap}
+.panel-head .tiny{max-width:56ch}
+.copybtn{
+  font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  background:var(--accent); color:#fff; border:0; border-radius:2px; padding:7px 14px; cursor:pointer; white-space:nowrap;
+}
+:root[data-theme="dark"] .copybtn{color:#0E1412}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .copybtn{color:#0E1412}}
+.copybtn:hover{opacity:.86}
+pre.tpl{
+  margin:0; padding:18px; overflow-x:auto; font-family:var(--mono); font-size:12.8px; line-height:1.85;
+  color:var(--ink-2); white-space:pre-wrap; word-break:break-word; background:var(--sunk);
+}
+pre.tpl mark{background:var(--seal-soft); color:var(--seal); padding:0 3px; font-weight:600}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto; border:1px solid var(--line); background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:640px; font-size:14px}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line-2); vertical-align:top}
+thead th{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:500; background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+td strong{font-weight:600}
+
+/* ---------- checklists ---------- */
+.checks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column}
+.checks li{border-bottom:1px solid var(--line-2)}
+.checks li:last-child{border-bottom:0}
+.checks label{display:flex; gap:12px; align-items:flex-start; padding:11px 4px; cursor:pointer}
+.checks input{margin:5px 0 0; accent-color:var(--accent); width:15px; height:15px; flex-shrink:0}
+.checks .body{display:flex; flex-direction:column; gap:2px}
+.checks .t{font-size:14.5px; font-weight:500; color:var(--ink)}
+.checks input:checked ~ .body .t{text-decoration:line-through; color:var(--ink-3); font-weight:400}
+.checks .d{font-size:12.5px; color:var(--ink-3); line-height:1.6}
+
+/* ---------- misc ---------- */
+.callout{border-left:3px solid var(--seal); background:var(--seal-soft); padding:14px 18px; font-size:14px; color:var(--ink-2)}
+.callout b{color:var(--ink)}
+.tl{display:flex; flex-direction:column}
+.tl-row{display:grid; grid-template-columns:88px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--line-2)}
+.tl-row:last-child{border-bottom:0}
+.tl-w{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--seal); letter-spacing:.05em; padding-top:3px}
+.tl-b .t{font-weight:600; font-size:15px; margin-bottom:4px}
+.tl-b .d{font-size:13.5px; color:var(--ink-2); line-height:1.65}
+footer{margin-top:70px; padding-top:22px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3); line-height:1.7}
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(14px);
+  background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:12.5px; letter-spacing:.03em;
+  padding:10px 18px; border-radius:2px; opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; z-index:50;
+}
+.toast.on{opacity:1; transform:translateX(-50%) translateY(0)}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="plate">
+      <div class="jibun">167-14</div>
+      <div class="plate-meta">
+        <div class="ko">라온빌 &middot; 기장읍 대라리 원룸건물</div>
+        <div class="road">부산 기장군 기장읍 대라리 167-14 &middot; 지상 5층 &middot; 12룸 &middot; 임대 중</div>
+      </div>
+    </div>
+    <div class="keyfacts">
+      <div class="kf"><span class="kf-k">매매가</span><span class="kf-v">9억 2,000만</span><span class="kf-s">감정가 10억 2,000만</span></div>
+      <div class="kf"><span class="kf-k">월 임대수입</span><span class="kf-v">400만</span><span class="kf-s">보증금 7,900만</span></div>
+      <div class="kf"><span class="kf-k">표면 수익률</span><span class="kf-v">5.71%</span><span class="kf-s">보증금 제외 8억 4,100만 기준</span></div>
+      <div class="kf hi"><span class="kf-k">융자 승계 시</span><span class="kf-v">6.01%</span><span class="kf-s">실투자 5억 9,305만 &middot; 연 3,565만</span></div>
+    </div>
+    <p class="lede">파는 데 필요한 건 매물을 올릴 곳을 늘리는 게 아니라, <b>매수자가 실제로 보는 곳에 이 숫자를 정확히 얹는 것</b>입니다. 수익형 원룸건물 문의는 대부분 네이버 부동산에서 나오고, 네이버 부동산에는 중개사만 올릴 수 있습니다. 그래서 순서는 — 숫자와 사진을 확정하고, 기장읍 중개사에 일제히 접수하고, 직거래 채널과 유료광고로 뒤를 받칩니다.</p>
+    <figure class="figure">
+      <svg viewBox="0 0 620 250" role="img" aria-label="대라리 167-14 라온빌과 인접 필지의 위치 관계 개념도">
+        <defs>
+          <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-width=".5" opacity=".13"/>
+          </pattern>
+        </defs>
+        <rect width="620" height="250" fill="url(#g)" style="color:var(--ink-3)"/>
+        <text x="10" y="20" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing=".08em" fill="var(--ink-3)">기장읍사무소 &middot; 기장군선거관리위원회 방면</text>
+        <line x1="10" y1="30" x2="610" y2="30" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/>
+        <g fill="none" stroke="var(--line)" stroke-width="1.2">
+          <rect x="14" y="58" width="96" height="126"/>
+          <rect x="118" y="58" width="118" height="126"/>
+          <rect x="392" y="58" width="98" height="126"/>
+          <rect x="498" y="58" width="108" height="126"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)">
+          <text x="26" y="80">167-3</text><text x="130" y="80">167-7</text>
+          <text x="404" y="80">167-12</text><text x="510" y="80">167-13</text>
+        </g>
+        <g font-family="IBM Plex Sans KR, sans-serif" font-size="10.5" fill="var(--ink-3)">
+          <text x="26" y="98">기장군</text><text x="26" y="112">선관위</text>
+          <text x="130" y="98">기장열린교회</text>
+          <text x="404" y="98">한진빌라</text>
+          <text x="510" y="98">황중베르빌</text>
+        </g>
+        <rect x="244" y="58" width="140" height="126" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.2"/>
+        <text x="256" y="82" font-family="IBM Plex Mono, monospace" font-size="19" font-weight="600" fill="var(--accent-ink)">167-14</text>
+        <text x="256" y="104" font-family="IBM Plex Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--accent-ink)">라온빌</text>
+        <text x="256" y="122" font-family="IBM Plex Sans KR, sans-serif" font-size="10.5" fill="var(--accent-ink)">5층 &middot; 12룸 &middot; 205.2㎡</text>
+        <rect x="14" y="196" width="592" height="34" fill="var(--surface-2)" stroke="var(--line)" stroke-width="1"/>
+        <line x1="14" y1="213" x2="606" y2="213" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="10 9" opacity=".5"/>
+        <text x="24" y="218" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing=".06em" fill="var(--ink-3)">대청로36번길</text>
+        <text x="498" y="218" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing=".06em" fill="var(--ink-3)">→ 차성로216번길</text>
+      </svg>
+      <figcaption>위치 관계 개념도 — 인접 지번의 배열만 표시한 스케치이며, 실제 지적 경계·형상·면적과 다릅니다.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 -->
+<section id="s1">
+  <div class="shead"><span class="snum">01</span><h2>매물 팩트 &mdash; 확정된 칸과 비어 있는 칸</h2><span class="note">비어 있는 칸이 문의를 끊습니다</span></div>
+  <p class="sintro">주신 정보로 광고에 필요한 대부분이 채워졌습니다. 다만 매수자가 두 번째로 묻는 질문들이 아직 비어 있고, 이 칸이 비면 중개사가 매물을 적극적으로 밀지 않습니다. 오늘 안에 채우세요.</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">확정 &middot; 제공받은 매물 정보</div>
+      <ul class="factlist">
+        <li><span class="k">건물명</span><span class="v"><b>라온빌</b> &middot; 대라리 167-14</span></li>
+        <li><span class="k">규모</span><span class="v">지상 <b>5층</b> &middot; 총 <b>12룸</b></span></li>
+        <li><span class="k">대지</span><span class="v"><b>205.2㎡</b> (62.07평)</span></li>
+        <li><span class="k">연면적</span><span class="v"><b>352.3㎡</b> (106.57평) &middot; 대지 대비 171.7%</span></li>
+        <li><span class="k">임대</span><span class="v">보증금 <b>7,900만</b> / 월 <b>400만</b></span></li>
+        <li><span class="k">융자</span><span class="v">새마을금고 <b>2억 4,795만</b> &middot; 연 4.98% &middot; <b>승계 가능</b></span></li>
+        <li><span class="k">매매가</span><span class="v"><b>9억 2,000만</b></span></li>
+        <li><span class="k">감정가</span><span class="v"><b>10억 2,000만</b> (새마을금고 외부공인감정)</span></li>
+        <li><span class="k">입주</span><span class="v">즉시 입주 가능 호실 있음</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">비어 있음 &middot; 오늘 채울 것</div>
+      <ul class="factlist">
+        <li><span class="k">준공연도</span><span class="v">건축물대장 1면. <b>노후도가 곧 가격</b>이라 매수자가 가장 먼저 묻습니다. <span class="pill need">필수</span></span></li>
+        <li><span class="k">주차대수</span><span class="v">원룸건물 임대 경쟁력의 핵심. 1층 필로티 주차인지도 함께. <span class="pill need">필수</span></span></li>
+        <li><span class="k">공실</span><span class="v">'즉시 입주 가능'이 <b>몇 개 호실</b>인지. 월 400만이 만실 기준인지 현재 기준인지 명확히. <span class="pill need">필수</span></span></li>
+        <li><span class="k">호실별 현황</span><span class="v">12개 호실의 보증금·월세·만기 표. <b>수익률의 유일한 증빙</b>입니다. <span class="pill need">필수</span></span></li>
+        <li><span class="k">용도</span><span class="v">건축물대장상 <b>다가구(단독)인지 다세대인지</b>. 매도 방식과 세금이 완전히 달라집니다. <span class="pill need">필수</span></span></li>
+        <li><span class="k">위반건축물</span><span class="v">대장에 표기가 있으면 매수자 대출이 막힙니다. 반드시 확인. <span class="pill need">필수</span></span></li>
+        <li><span class="k">용도지역</span><span class="v">토지이용계획확인원. 건폐율·용적률 여유가 있으면 <b>신축 논거</b>가 생깁니다. <span class="pill mid">권장</span></span></li>
+        <li><span class="k">도로명</span><span class="v">대청로36번길 19로 조사됩니다. 대장으로 한 번 대조하세요. <span class="pill mid">대조</span></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>가격 표기를 하나로 정해야 합니다.</b> 주신 자료의 &ldquo;9억 2천 / 10억 2천&rdquo;을 이 페이지는 <b>매매 희망가 9억 2,000만 · 감정가 10억 2,000만</b>으로 읽고 모든 문구를 작성했습니다. 만약 9.2억&ndash;10.2억의 호가 범위라는 뜻이었다면 알려주세요 &mdash; 문구를 전부 다시 뽑겠습니다. 광고에 두 금액을 나란히 적으면 매수자는 반드시 낮은 쪽부터 깎기 시작합니다.</div>
+</section>
+
+<!-- 02 -->
+<section id="s2">
+  <div class="shead"><span class="snum">02</span><h2>이 건물이 팔리는 이유는 숫자 세 개입니다</h2><span class="note">값을 바꾸면 03의 문구가 함께 바뀝니다</span></div>
+  <p class="sintro">수익형 건물 광고는 결국 수익률 한 줄로 읽힙니다. 아래는 주신 정보가 그대로 들어가 있고, 조건을 바꿔 보고 싶으면 값을 수정하면 됩니다. 금액은 만원 단위입니다.</p>
+  <div class="calc">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:14px">매물 정보</div>
+      <div class="fields">
+        <div class="f"><label for="landM2">대지 ㎡</label><input id="landM2" type="number" inputmode="decimal" value="205.2"></div>
+        <div class="f"><label for="floorM2">연면적 ㎡</label><input id="floorM2" type="number" inputmode="decimal" value="352.3"></div>
+        <div class="f"><label for="floors">지상 층수</label><input id="floors" type="number" inputmode="numeric" value="5"></div>
+        <div class="f"><label for="units">총 룸수</label><input id="units" type="number" inputmode="numeric" value="12"></div>
+        <div class="f"><label for="year">준공연도</label><input id="year" type="number" inputmode="numeric" placeholder="확인 필요"></div>
+        <div class="f"><label for="parking">주차 대수</label><input id="parking" type="number" inputmode="numeric" placeholder="확인 필요"></div>
+      </div>
+      <div class="eyebrow" style="margin:20px 0 14px">돈 &middot; 만원 단위</div>
+      <div class="fields">
+        <div class="f"><label for="deposit">보증금 합계</label><input id="deposit" type="number" inputmode="numeric" value="7900"></div>
+        <div class="f"><label for="rent">월세 합계</label><input id="rent" type="number" inputmode="numeric" value="400"></div>
+        <div class="f"><label for="loan">승계 융자</label><input id="loan" type="number" inputmode="numeric" value="24795"></div>
+        <div class="f"><label for="rate">융자 금리 %</label><input id="rate" type="number" inputmode="decimal" step="0.01" value="4.98"></div>
+        <div class="f"><label for="price">매매 희망가</label><input id="price" type="number" inputmode="numeric" value="92000"></div>
+        <div class="f"><label for="appraise">감정가</label><input id="appraise" type="number" inputmode="numeric" value="102000"></div>
+      </div>
+      <div class="eyebrow" style="margin:20px 0 14px">연락처 &middot; 문구에 삽입됩니다</div>
+      <div class="fields">
+        <div class="f" style="grid-column:span 2"><label for="owner">이름 / 호칭</label><input id="owner" type="text" placeholder="예: 김OO (소유주)"></div>
+        <div class="f" style="grid-column:span 2"><label for="phone">연락처</label><input id="phone" type="tel" placeholder="010-0000-0000"></div>
+      </div>
+    </div>
+    <div class="readout">
+      <div class="eyebrow" style="margin-bottom:12px">계산 결과</div>
+      <div class="ro-row hero"><span class="k">융자 승계 수익률<span style="display:block;font-size:11px;opacity:.6">실투자금 대비 이자 차감 후</span></span><span class="v" id="oLev">&mdash;</span></div>
+      <div class="ro-row"><span class="k">표면 수익률</span><span class="v" id="oYield">&mdash;</span></div>
+      <div class="ro-row"><span class="k">연 임대수입</span><span class="v" id="oAnnual">&mdash;</span></div>
+      <div class="ro-row"><span class="k">융자 승계 시 실투자금</span><span class="v" id="oEquity">&mdash;</span></div>
+      <div class="ro-row"><span class="k">연 이자 부담</span><span class="v" id="oInterest">&mdash;</span></div>
+      <div class="ro-row"><span class="k">감정가 대비</span><span class="v" id="oDisc">&mdash;</span></div>
+      <div class="ro-row"><span class="k">대지 / 연면적</span><span class="v" id="oPyeong">&mdash;</span></div>
+      <div class="ro-row"><span class="k">대지 평당가</span><span class="v" id="oPpp">&mdash;</span></div>
+      <div class="ro-row"><span class="k">룸당 단가</span><span class="v" id="oPerUnit">&mdash;</span></div>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:18px">
+    <div class="card"><div class="eyebrow" style="margin-bottom:8px">세울 논거 &mdash; 하나</div><p class="small"><b>감정가보다 1억 싸다.</b> 새마을금고 외부공인감정 10억 2,000만 대비 9.8% 낮은 가격입니다. 다만 광고에 쓸 때는 반드시 <b>&ldquo;대출용 감정가&rdquo;임을 함께 적으세요</b> &mdash; 시세 감정과 혼동시키면 과장광고가 됩니다.</p></div>
+    <div class="card"><div class="eyebrow" style="margin-bottom:8px">세울 논거 &mdash; 둘</div><p class="small"><b>대출이 그대로 넘어간다.</b> 2억 4,795만 승계면 매수자는 현금 약 5억 9,300만으로 진입합니다. 신규 대출 심사와 설정비를 건너뛴다는 점이 실제로 매수 결정을 앞당깁니다.</p></div>
+    <div class="card"><div class="eyebrow" style="margin-bottom:8px">세울 논거 &mdash; 셋</div><p class="small"><b>금리 4.98%는 낮춰질 여지다.</b> 매수자가 3.8%대로 대환하면 수익률이 6.5%까지 올라갑니다. 약점처럼 보이는 숫자를 <b>업사이드로 제시</b>하는 편이 문의 전환이 좋습니다.</p></div>
+  </div>
+  <p class="tiny" style="margin-top:14px">표면 수익률은 재산세·수선비·공실·관리비를 반영하지 않은 총수입 기준입니다. 매수자는 여기서 다시 실수익률을 계산하므로, 광고에는 표면 수익률을 쓰되 문의가 오면 실제 경비를 솔직히 밝히는 편이 계약까지 빠릅니다.</p>
+</section>
+
+<!-- 03 -->
+<section id="s3">
+  <div class="shead"><span class="snum">03</span><h2>채널마다 다른 글이 필요합니다</h2><span class="note">복사 버튼으로 바로 사용</span></div>
+  <p class="sintro">같은 매물이라도 중개사가 보는 글, 투자자가 보는 글, 동네 사람이 보는 글은 달라야 합니다. 아래 다섯 종은 02의 숫자가 자동으로 반영되며, <span style="color:var(--seal);font-weight:600">붉은 표시</span>는 아직 채우지 못한 칸입니다 &mdash; 그대로 두지 말고 확인해서 채우세요.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="t1">중개사 접수용 매물카드</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="t2">문자 &middot; 카톡 단문</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="t3">당근부동산 직거래</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="t4">카페 &middot; 블로그 장문</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="t5">플랫폼 요약형</button>
+  </div>
+
+  <div class="panel on" id="t1">
+    <div class="panel-head"><p class="tiny">기장읍 중개사무소에 팩스·메일·카톡으로 보내는 표준 양식입니다. 중개사는 하루에 수십 건을 받으므로 <b>한 화면에 다 보이는 것</b>이 전부입니다.</p><button class="copybtn" data-c="t1">복사</button></div>
+    <pre class="tpl" id="tpl-t1"></pre>
+  </div>
+  <div class="panel" id="t2">
+    <div class="panel-head"><p class="tiny">05의 중개사 명단에 하나씩 보낼 첫 연락입니다. 길면 안 읽습니다. 목적은 계약이 아니라 <b>&ldquo;자료 보내드릴까요&rdquo;에 대한 예스</b> 하나입니다.</p><button class="copybtn" data-c="t2">복사</button></div>
+    <pre class="tpl" id="tpl-t2"></pre>
+  </div>
+  <div class="panel" id="t3">
+    <div class="panel-head"><p class="tiny">당근 &rarr; 글쓰기 &rarr; <b>부동산 직거래</b>에 올립니다. 중고거래나 동네생활에 올리면 제재됩니다. 소유주 본인이 올리면 등기부 대조로 &lsquo;집주인 확인 매물&rsquo; 배지가 붙습니다.</p><button class="copybtn" data-c="t3">복사</button></div>
+    <pre class="tpl" id="tpl-t3"></pre>
+  </div>
+  <div class="panel" id="t4">
+    <div class="panel-head"><p class="tiny">네이버 카페와 블로그용. 검색으로 들어오는 글이라 <b>&lsquo;기장 원룸건물 매매&rsquo;</b> 같은 키워드가 본문에 자연스럽게 반복되어야 합니다. 사진 10장 이상과 함께 올리세요.</p><button class="copybtn" data-c="t4">복사</button></div>
+    <pre class="tpl" id="tpl-t4"></pre>
+  </div>
+  <div class="panel" id="t5">
+    <div class="panel-head"><p class="tiny">디스코 &middot; 밸류맵 &middot; 오픈채팅 &middot; 매물 공유방처럼 <b>스펙만 빠르게 훑는 자리</b>용. 군더더기 없이 숫자만 세웁니다.</p><button class="copybtn" data-c="t5">복사</button></div>
+    <pre class="tpl" id="tpl-t5"></pre>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="s4">
+  <div class="shead"><span class="snum">04</span><h2>문구보다 사진이 먼저 걸러냅니다</h2><span class="note">맑은 날 오전 &middot; 가로 촬영</span></div>
+  <p class="sintro">원룸건물 매물은 사진 세 장에서 대부분 탈락합니다. 아래를 한 번에 찍어 두면 모든 채널과 모든 중개사에게 같은 자료를 돌릴 수 있습니다. 세로가 아니라 <b>가로</b>로 찍으세요 &mdash; 플랫폼 썸네일이 가로입니다. 체크는 이 브라우저에 저장됩니다.</p>
+  <div class="card">
+    <ul class="checks" id="photoChecks">
+      <li><label><input type="checkbox" data-k="p1"><span class="body"><span class="t">건물 정면 전체 &mdash; 도로 건너편에서</span><span class="d">대표 사진이 됩니다. 5층이 프레임에 다 들어오도록 뒤로 물러서서, 전봇대와 주차 차량이 가리지 않는 각도로.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p2"><span class="body"><span class="t">건물 측면 + 진입도로</span><span class="d">도로 폭이 보이게. 접도 조건은 매수자가 반드시 확인하고, 신축 검토자에게는 결정적입니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p3"><span class="body"><span class="t">주차 공간 전경</span><span class="d">12룸 건물에서 주차 대수는 임대 경쟁력과 직결됩니다. 몇 대 대는지 사진으로 보이게.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p4"><span class="body"><span class="t">현관 &middot; 우편함 &middot; 공용 복도</span><span class="d">관리 상태를 보여주는 컷. 촬영 전에 청소하세요. 이 한 장이 &ldquo;관리되는 건물&rdquo;이라는 신뢰를 만듭니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p5"><span class="body"><span class="t">계단실 (5층 건물이므로 필수)</span><span class="d">승강기가 없다면 계단 상태가 곧 상품성입니다. 깨끗하면 반드시 넣으세요.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p6"><span class="body"><span class="t">공실 호실 내부 &mdash; 문에서 창 쪽으로</span><span class="d">&lsquo;즉시 입주 가능&rsquo; 호실을 활용하세요. 불 전부 켜고 커튼 열고, 사람 없이.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p7"><span class="body"><span class="t">호실 주방 &middot; 욕실</span><span class="d">원룸 상품성의 핵심. 물때·곰팡이 흔적 없이 정리한 상태로.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p8"><span class="body"><span class="t">옥상 전경</span><span class="d">방수 상태와 조망을 동시에. 옥상 방수 시공 시기를 알면 광고 본문에 적으세요 &mdash; 매수자가 크게 봅니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p9"><span class="body"><span class="t">보일러 &middot; 계량기함 &middot; 수도 계량기</span><span class="d">개별난방 여부와 설비 연식. 투자자가 향후 수선비를 가늠하는 컷입니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p10"><span class="body"><span class="t">지도 캡처 &mdash; 기장읍사무소 &middot; 기장역 표시</span><span class="d">네이버지도에서 건물 중심으로 캡처. 행정타운 인접이 이 매물의 최대 강점입니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p11"><span class="body"><span class="t">임대차현황표 &mdash; 금액만, 이름·연락처 가림</span><span class="d">월 400만을 증명하는 유일한 자료입니다. 임차인 개인정보는 반드시 지우고 배포하세요.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="p12"><span class="body"><span class="t">1분 세로 영상 &mdash; 도로 &rarr; 현관 &rarr; 복도 &rarr; 호실 &rarr; 옥상</span><span class="d">유튜브 쇼츠·인스타 릴스·당근에 그대로 올립니다. 영상 있는 매물의 문의량은 확연히 다릅니다.</span></span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="s5">
+  <div class="shead"><span class="snum">05</span><h2>기장읍 중개사 일제 접수</h2><span class="note">가장 확실한 한 수</span></div>
+  <p class="sintro">이 매물의 매수자는 대부분 <b>부산 시내·정관·해운대의 수익형 투자자</b>이고, 그들은 네이버 부동산에서 검색합니다. 네이버 부동산에는 개인이 올릴 수 없으므로, 중개사에게 접수해 <b>중개사가 네이버에 올리게 하는 것</b>이 사실상 유일한 경로입니다. 아래는 네이버 지도에서 확인한 기장읍 일대 중개사무소입니다 &mdash; 전화번호는 상호로 검색해 확인한 뒤 걸으세요.</p>
+  <div class="card">
+    <ul class="checks" id="agentChecks">
+      <li><label><input type="checkbox" data-k="a1"><span class="body"><span class="t">중앙부동산공인중개사사무소 <span class="pill ok">최근접</span></span><span class="d">대라리 81-30 &middot; 차성남로65번길 4 &mdash; 대라리 중심. 원룸 임대차를 많이 다루는 자리입니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a2"><span class="body"><span class="t">금실공인중개사사무소 <span class="pill ok">최근접</span></span><span class="d">대라리 125-4 1층 &middot; 차성남로55번길 6</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a3"><span class="body"><span class="t">황금터부동산공인중개사사무소</span><span class="d">대라리 94-38 상가 103호 &middot; 차성남로 91 &mdash; 네이버 블로그 운영(nayayung). 블로그 운영 중개사는 매물 노출에 적극적입니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a4"><span class="body"><span class="t">에스부동산</span><span class="d">대라리 345 &middot; 대청로13번길 46</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a5"><span class="body"><span class="t">기장역공인중개사사무소</span><span class="d">대라리 29-32 &middot; 차성로288번길 81 &mdash; 블로그 운영(sq122220). 역세권 임차 수요를 다룹니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a6"><span class="body"><span class="t">미소자이부동산공인중개사사무소</span><span class="d">동부리 284-11 1층 &middot; 차성동로 92 &mdash; 블로그 운영(misojai)</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a7"><span class="body"><span class="t">청윤공인중개사사무소</span><span class="d">교리 351-7 1층 &middot; 차성동로 160-11 &mdash; 블로그 운영(kjmg07)</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a8"><span class="body"><span class="t">동부산탑부동산공인중개사사무소</span><span class="d">시랑리 722-4 헬로프라자 103호 &middot; 동부산관광9로 22 &mdash; 동부산관광단지권. 외지 투자자 접촉면이 넓습니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a9"><span class="body"><span class="t">네이버 지도에서 &lsquo;기장읍 부동산&rsquo; 검색 &mdash; 10곳 추가</span><span class="d">위 8곳은 시작점일 뿐입니다. 최소 15&ndash;20곳에 접수하세요. 전속이 아니라 일반중개이므로 많이 뿌릴수록 유리합니다.</span></span></label></li>
+      <li><label><input type="checkbox" data-k="a10"><span class="body"><span class="t">부산 시내 수익형·빌딩 전문 중개법인 3곳 <span class="pill mid">외지 매수자</span></span><span class="d">기장 밖 투자자를 데려오는 경로입니다. &lsquo;부산 수익형부동산 전문&rsquo;으로 검색해 3곳만 추가 접수하세요.</span></span></label></li>
+    </ul>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:10px">전화 스크립트 &mdash; 30초</div>
+      <p class="small">&ldquo;안녕하세요, 기장읍 대라리 167-14 <b>라온빌</b> 소유주입니다. 5층 12룸 원룸건물을 매도하려고 하는데 접수 좀 부탁드리려고요. 보증금 7,900에 월 400 나오고, 매매는 9억 2천입니다. 새마을 대출 2억 4,800이 승계 가능해서 실투자 5억 9천 정도에 수익률 6% 나옵니다. <b>일반중개로 여러 곳에 내놓고 있고 공동중개도 좋습니다.</b> 자료 카톡으로 보내드릴까요?&rdquo;</p>
+      <p class="tiny" style="margin-top:10px">마지막 문장이 핵심입니다. 카톡 번호를 받아내면 03의 매물카드와 사진 12장을 그대로 보냅니다.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:10px">접수할 때 정해둘 것</div>
+      <ul class="factlist">
+        <li><span class="k">중개형태</span><span class="v"><b>일반중개</b>로 최대한 많은 곳에. 전속은 한 곳이 확실한 매수자를 물고 왔을 때만 고려하세요.</span></li>
+        <li><span class="k">수수료</span><span class="v">주택 9억 초과는 상한 요율 <b>0.7% 이내 협의</b>입니다. 미리 &ldquo;법정 요율대로 드린다&rdquo;고 말해두면 중개사가 더 적극적입니다.</span></li>
+        <li><span class="k">가격 하한</span><span class="v">중개사에게 <b>절대 먼저 말하지 마세요.</b> 9억 2천으로만 접수하고, 조정은 실제 매수자가 붙었을 때 합니다.</span></li>
+        <li><span class="k">열쇠 &middot; 방문</span><span class="v">공실 호실을 <b>바로 보여줄 수 있는 방법</b>을 정해두세요. 당일 안내가 안 되면 매수자는 다음 매물로 넘어갑니다.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="s6">
+  <div class="shead"><span class="snum">06</span><h2>직접 올릴 수 있는 곳, 없는 곳</h2><span class="note">개인 등록 가능 여부가 갈립니다</span></div>
+  <p class="sintro">채널을 무작정 늘리는 건 의미가 없습니다. 이 매물의 매수자가 실제로 머무는 곳은 정해져 있고, 그중 절반은 개인이 직접 올릴 수 없습니다. 아래 우선순위대로 하루에 하나씩만 처리해도 일주일이면 끝납니다.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>채널</th><th>개인 등록</th><th>비용</th><th>왜 여기인가</th><th>우선</th></tr></thead>
+      <tbody>
+        <tr><td><strong>네이버 부동산</strong></td><td>불가 &mdash; 중개사만</td><td class="num">중개사 부담</td><td>수익형 건물 매수 문의의 대부분이 여기서 나옵니다. 05에서 접수한 중개사에게 <b>&ldquo;네이버에 꼭 올려달라&rdquo;</b>고 명시적으로 요청하세요. 접수만 받고 안 올리는 곳이 많습니다.</td><td class="num">1</td></tr>
+        <tr><td><strong>당근 부동산 직거래</strong></td><td>가능 &mdash; 본인인증 필수</td><td class="num">무료</td><td>소유주 등록 시 등기부 대조로 &lsquo;집주인 확인 매물&rsquo; 배지. 기장·정관 지역민 노출이 강하고, 실제로 근처 임대사업자가 봅니다.</td><td class="num">2</td></tr>
+        <tr><td><strong>네이버 카페</strong></td><td>가능</td><td class="num">무료</td><td>기장 지역 맘카페·주민카페 + 부동산 투자 카페. 카페마다 매물글 규정이 다르니 <b>가입 후 게시판 규정을 먼저 확인</b>하세요. 무단 홍보는 강퇴됩니다.</td><td class="num">3</td></tr>
+        <tr><td><strong>네이버 블로그</strong></td><td>가능</td><td class="num">무료</td><td>&lsquo;기장 원룸건물 매매&rsquo;로 검색해 들어오는 사람을 받는 그물입니다. 사진 15장 + 03의 장문을 올리고, 매주 한 번 갱신하면 노출이 유지됩니다.</td><td class="num">3</td></tr>
+        <tr><td><strong>유튜브 쇼츠 &middot; 인스타 릴스</strong></td><td>가능</td><td class="num">무료</td><td>04의 1분 영상을 그대로. &lsquo;기장 수익형 원룸건물&rsquo; 태그. 요즘 투자자는 영상 없는 건물 매물을 잘 보지 않습니다.</td><td class="num">4</td></tr>
+        <tr><td><strong>디스코 &middot; 밸류맵</strong></td><td>제한적 &mdash; 중개사 중심</td><td class="num">무료</td><td>토지·건물 실거래 조회 서비스라 <b>수익형 투자자가 시세를 볼 때 들어오는 곳</b>입니다. 개인은 &lsquo;매물 내놓기&rsquo;로 접수하고, 접수한 중개사에게 등록을 요청하세요.</td><td class="num">4</td></tr>
+        <tr><td><strong>벼룩시장 &middot; 교차로</strong></td><td>가능</td><td class="num">수만원대</td><td>기장 지역 어르신 자산가층에 여전히 닿는 오프라인 지면. 비용 대비 무시하기 어렵습니다.</td><td class="num">5</td></tr>
+        <tr><td>직방 &middot; 다방</td><td>불가 &mdash; 중개사만</td><td class="num">&mdash;</td><td>원룸 <b>임차</b> 중심이라 통건물 매매와는 맞지 않습니다. 공실을 채워 월세를 올리는 용도로만 쓰세요.</td><td class="num">&mdash;</td></tr>
+        <tr><td>네모</td><td>중개사 중심</td><td class="num">&mdash;</td><td>상가·사무실 특화. 주거용 원룸건물에는 우선순위가 낮습니다.</td><td class="num">&mdash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>공실을 먼저 채우는 게 광고보다 셉니다.</b> &lsquo;즉시 입주 가능&rsquo; 호실이 있다면, 매도 광고를 돌리는 동안 그 방을 임대로도 함께 내놓으세요. 월세가 400만에서 430만으로 올라가면 표면 수익률이 5.71%에서 6.1%대가 되고, <b>매도가를 낮추지 않고도 매물이 다르게 보입니다.</b></div>
+</section>
+
+<!-- 07 -->
+<section id="s7">
+  <div class="shead"><span class="snum">07</span><h2>광고비는 어디에 쓰는가</h2><span class="note">유료는 무료 채널을 다 채운 뒤에</span></div>
+  <p class="sintro">먼저 분명히 해둘 것 &mdash; <b>05의 중개사 접수를 다 하기 전에 유료광고를 돌리면 돈이 샙니다.</b> 문의가 와도 받을 자료가 없고, 중개사가 이미 뿌린 매물과 광고가 겹칩니다. 무료 채널을 다 채우고 2주가 지나도 문의가 없을 때 아래를 씁니다.</p>
+  <div class="grid3">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:6px">1단계</div>
+      <div class="h3" style="margin-bottom:2px">월 20&ndash;30만원</div>
+      <p class="tiny" style="margin-bottom:12px">문의가 아예 없을 때 가장 먼저</p>
+      <ul class="factlist">
+        <li><span class="k">당근 광고</span><span class="v">기장군 + 정관 + 일광 지역 타겟. 지역 노출 단가가 가장 쌉니다. <b>월 15만</b></span></li>
+        <li><span class="k">네이버 검색</span><span class="v">&lsquo;기장 원룸건물 매매&rsquo; &lsquo;기장 다가구 매매&rsquo; 등 지역 롱테일 키워드. 클릭당 몇백원 수준. <b>월 10만</b></span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:6px">2단계</div>
+      <div class="h3" style="margin-bottom:2px">월 80&ndash;100만원</div>
+      <p class="tiny" style="margin-bottom:12px">한 달 지나도 계약이 안 붙을 때</p>
+      <ul class="factlist">
+        <li><span class="k">메타 광고</span><span class="v">인스타·페북. 부산 전역 40&ndash;60대 + 부동산 투자 관심사 타겟. 04의 영상을 소재로. <b>월 40만</b></span></li>
+        <li><span class="k">네이버 확대</span><span class="v">&lsquo;부산 수익형 부동산&rsquo;까지 키워드 확장. <b>월 30만</b></span></li>
+        <li><span class="k">지역 지면</span><span class="v">벼룩시장·교차로 기장판. <b>월 10&ndash;20만</b></span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:6px">3단계</div>
+      <div class="h3" style="margin-bottom:2px">건당 성과보수</div>
+      <p class="tiny" style="margin-bottom:12px">두 달 이상 안 팔릴 때 &mdash; 광고비보다 이쪽</p>
+      <ul class="factlist">
+        <li><span class="k">공동중개</span><span class="v">중개사에게 &ldquo;공동중개 시 수수료 <b>양쪽 다 부담</b>&rdquo;을 제안하세요. 광고비 100만원보다 중개사를 움직이는 힘이 큽니다.</span></li>
+        <li><span class="k">가격 조정</span><span class="v">두 달간 문의 자체가 없었다면 광고가 아니라 <b>가격 문제</b>입니다. 8억 후반대에서 표면 수익률 6%가 넘어갑니다.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="tiny" style="margin-top:14px">유료광고를 돌릴 때는 광고 도착지를 <b>블로그 글 하나로 고정</b>하세요. 채널마다 다른 곳으로 보내면 어디서 문의가 왔는지 알 수 없고, 다음 달 예산을 어디에 쓸지 판단할 근거가 사라집니다.</p>
+</section>
+
+<!-- 08 -->
+<section id="s8">
+  <div class="shead"><span class="snum">08</span><h2>4주 실행표</h2><span class="note">1주차가 전체의 8할</span></div>
+  <div class="card">
+    <div class="tl">
+      <div class="tl-row"><div class="tl-w">1주차<br>월&ndash;화</div><div class="tl-b"><div class="t">서류 확정</div><div class="d">등기부등본(인터넷등기소 700원) &middot; 건축물대장 &middot; 토지이용계획확인원 &middot; 호실별 임대차현황표 작성. <b>01에서 비어 있던 칸을 전부 채웁니다.</b> 위반건축물 표기가 있으면 이 시점에 알아야 합니다 &mdash; 나중에 나오면 계약이 깨집니다.</div></div></div>
+      <div class="tl-row"><div class="tl-w">1주차<br>수</div><div class="tl-b"><div class="t">촬영</div><div class="d">04의 12컷 + 1분 영상. 맑은 날 오전. 촬영 전날 공용부 청소.</div></div></div>
+      <div class="tl-row"><div class="tl-w">1주차<br>목&ndash;금</div><div class="tl-b"><div class="t">중개사 일제 접수</div><div class="d">05의 명단 + 네이버 지도로 추가한 곳까지 <b>15&ndash;20곳</b>. 전화 후 카톡으로 매물카드와 사진 발송. &ldquo;네이버 부동산에 올려주세요&rdquo;를 반드시 말로 요청.</div></div></div>
+      <div class="tl-row"><div class="tl-w">2주차</div><div class="tl-b"><div class="t">직접 등록</div><div class="d">당근 부동산 직거래 &rarr; 네이버 블로그 장문 &rarr; 지역 카페 &rarr; 유튜브 쇼츠 &middot; 인스타 릴스. 하루에 하나씩. 동시에 <b>공실 호실을 임대로도 내놓습니다.</b></div></div></div>
+      <div class="tl-row"><div class="tl-w">3주차</div><div class="tl-b"><div class="t">점검과 보강</div><div class="d">네이버 부동산에서 <b>내 매물이 실제로 검색되는지 직접 확인</b>하세요. 안 올린 중개사에 재요청. 문의가 0건이면 여기서 유료광고 1단계 시작.</div></div></div>
+      <div class="tl-row"><div class="tl-w">4주차</div><div class="tl-b"><div class="t">판단</div><div class="d">문의는 오는데 계약이 안 되면 &rarr; 가격 또는 자료의 문제. 문의 자체가 없으면 &rarr; 노출의 문제. 둘을 구분해야 다음 달에 쓸 수를 정할 수 있습니다.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="s9">
+  <div class="shead"><span class="snum">09</span><h2>광고 전에 알아둘 것</h2><span class="note">계약을 깨는 것들</span></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">표시광고 &middot; 개인정보</div>
+      <ul class="factlist">
+        <li><span class="k">감정가</span><span class="v">&ldquo;감정가 10억 2천&rdquo;만 적으면 시세 감정으로 오인됩니다. <b>&ldquo;새마을금고 대출용 외부공인감정&rdquo;</b>이라고 함께 적으세요.</span></li>
+        <li><span class="k">수익률</span><span class="v">표면 수익률임을 명시. 경비 차감 후라고 오해하게 두면 계약 직전에 신뢰가 무너집니다.</span></li>
+        <li><span class="k">대출 승계</span><span class="v"><b>&ldquo;금융기관 심사에 따라 승계 가부가 결정된다&rdquo;</b>는 단서를 반드시 붙이세요. 확정처럼 광고했다가 승계가 막히면 분쟁이 됩니다.</span></li>
+        <li><span class="k">임차인 정보</span><span class="v">이름·연락처·호실 특정 정보는 절대 공개 금지. 임대차현황표는 <b>금액과 만기만</b> 남기고 가리세요.</span></li>
+        <li><span class="k">사진</span><span class="v">임차 중인 호실을 찍을 때는 <b>사전 동의</b>를 받으세요. 개인 물건이 찍힌 사진은 올리지 않습니다.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">직거래 &middot; 세금</div>
+      <ul class="factlist">
+        <li><span class="k">직거래</span><span class="v">당근에서 문의가 와도 <b>계약서는 공인중개사를 통해</b> 쓰세요. 9억대 건물에서 중개수수료를 아끼려다 생기는 손실이 훨씬 큽니다.</span></li>
+        <li><span class="k">신분 확인</span><span class="v">직거래 문의자에게 자료를 보내기 전 신분을 확인하세요. 매물 정보만 수집하는 업자 문의가 상당수입니다.</span></li>
+        <li><span class="k">양도세</span><span class="v"><b>계약 전에</b> 세무사와 상담하세요. 보유기간·다주택 여부·다가구 여부에 따라 세액이 크게 달라지고, 계약 후에는 되돌릴 수 없습니다.</span></li>
+        <li><span class="k">다가구 판정</span><span class="v">다가구 단독주택이면 1주택 비과세 판단 대상이 될 수 있습니다. <b>이 한 가지로 수천만원이 갈립니다.</b></span></li>
+        <li><span class="k">임대 승계</span><span class="v">매수자는 12개 계약의 만기와 보증금을 전부 확인합니다. 만기가 몰려 있으면 미리 조정해 두세요.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>부산 기장군 기장읍 대라리 167-14 (라온빌)</b> 매도 실행판 &middot; 2026년 8월 작성</p>
+  <p style="margin-top:6px">매물 정보(면적·임대·융자·가격)는 소유주 제공 자료 기준입니다. 입지·인접 지번·참고 실거래는 네이버 지도 및 공개 부동산 정보 검색 결과이며, 도로명주소를 포함해 <b>건축물대장·등기부로 대조한 뒤</b> 광고에 사용하세요. 수익률은 표면 기준 계산값으로 세금·수선비·공실을 반영하지 않았습니다. 이 문서는 매도 실무 참고자료이며 세무·법률 자문이 아닙니다.</p>
+</footer>
+
+</div>
+<div class="toast" id="toast">복사했습니다</div>
+
+<style>
+.keyfacts{display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+.kf{padding:15px 20px 15px 0; display:flex; flex-direction:column; gap:1px; border-right:1px dotted var(--line)}
+.kf:last-child{border-right:0}
+.kf-k{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+.kf-v{font-family:var(--mono); font-size:clamp(19px,2.9vw,25px); font-weight:600; color:var(--ink); line-height:1.3; font-variant-numeric:tabular-nums}
+.kf-s{font-size:11.5px; color:var(--ink-3); line-height:1.5}
+.kf.hi .kf-v{color:var(--accent-ink)}
+@media(max-width:620px){.kf{border-right:0; border-bottom:1px dotted var(--line); padding-right:0}.kf:last-child{border-bottom:0}}
+</style>
+
+<script>
+(function(){
+  "use strict";
+  var P = 3.3057851;
+  function $(id){ return document.getElementById(id); }
+  function num(id){ var el=$(id); if(!el) return NaN; var v=parseFloat(el.value); return isNaN(v)?NaN:v; }
+  function txt(id){ var el=$(id); return (el && el.value.trim()) ? el.value.trim() : ""; }
+
+  var KEY="daerari16714";
+  var store;
+  try{ store = JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ store = {}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+  function comma(n){ return Math.round(n).toLocaleString("ko-KR"); }
+  function won(man){
+    if(!isFinite(man)) return "?";
+    var neg = man<0; man = Math.abs(man);
+    var eok = Math.floor(man/10000), rest = Math.round(man%10000);
+    var s = eok>0 ? (rest ? eok+"억 "+comma(rest)+"만" : eok+"억") : comma(man)+"만";
+    return (neg?"-":"")+s;
+  }
+  function py(m2){ return (m2/P).toFixed(2); }
+  function B(label){ return "@@"+label+"@@"; }
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function toHtml(s){ return esc(s).replace(/@@(.*?)@@/g, '<mark>[$1]</mark>'); }
+  function toText(s){ return s.replace(/@@(.*?)@@/g, '[$1]'); }
+
+  function model(){
+    var m = {};
+    m.land=num("landM2"); m.floor=num("floorM2"); m.floors=num("floors"); m.units=num("units");
+    m.year=num("year"); m.parking=num("parking");
+    m.dep=num("deposit"); m.rent=num("rent");
+    m.loan=num("loan")||0; m.rate=num("rate")||0;
+    m.price=num("price"); m.appr=num("appraise");
+    m.owner=txt("owner"); m.phone=txt("phone");
+
+    m.annual  = isFinite(m.rent) ? m.rent*12 : NaN;
+    m.net     = (isFinite(m.price)&&isFinite(m.dep)) ? m.price-m.dep : NaN;
+    m.yld     = (isFinite(m.annual)&&m.net>0) ? m.annual/m.net*100 : NaN;
+    m.equity  = isFinite(m.net) ? m.net-m.loan : NaN;
+    m.interest= m.loan*m.rate/100;
+    m.netInc  = isFinite(m.annual) ? m.annual-m.interest : NaN;
+    m.lev     = (m.equity>0 && isFinite(m.netInc)) ? m.netInc/m.equity*100 : NaN;
+    m.disc    = (isFinite(m.appr)&&isFinite(m.price)) ? m.appr-m.price : NaN;
+    m.discPct = (isFinite(m.disc)&&m.appr>0) ? m.disc/m.appr*100 : NaN;
+    m.landPy  = isFinite(m.land) ? m.land/P : NaN;
+    m.floorPy = isFinite(m.floor) ? m.floor/P : NaN;
+    m.ppp     = (isFinite(m.price)&&m.landPy>0) ? m.price/m.landPy : NaN;
+    m.perUnit = (isFinite(m.price)&&m.units>0) ? m.price/m.units : NaN;
+
+    m.sYear  = isFinite(m.year) ? m.year+"년" : B("준공연도 확인");
+    m.sPark  = isFinite(m.parking) ? m.parking+"대" : B("주차대수 확인");
+    m.sOwner = m.owner || B("이름");
+    m.sPhone = m.phone || B("연락처");
+    m.sFloors= isFinite(m.floors) ? m.floors : "?";
+    m.sUnits = isFinite(m.units) ? m.units : "?";
+    return m;
+  }
+
+  function paint(m){
+    function set(id,v,sub){
+      var el=$(id); if(!el) return;
+      el.innerHTML = (v==null) ? "&mdash;" : esc(v)+(sub?'<small>'+esc(sub)+'</small>':"");
+    }
+    set("oLev", isFinite(m.lev)? m.lev.toFixed(2)+"%" : null, isFinite(m.lev)? "연 "+won(m.netInc)+" · 실투자 "+won(m.equity) : "");
+    set("oYield", isFinite(m.yld)? m.yld.toFixed(2)+"%" : null);
+    set("oAnnual", isFinite(m.annual)? won(m.annual) : null, isFinite(m.rent)? "월 "+won(m.rent) : "");
+    set("oEquity", isFinite(m.equity)? won(m.equity) : null, "매매가 − 보증금 − 승계융자");
+    set("oInterest", m.loan>0 ? won(m.interest) : "융자 없음", m.loan>0 ? "연 "+m.rate+"% 기준" : "");
+    set("oDisc", isFinite(m.disc)? (m.disc>=0?"−":"+")+won(Math.abs(m.disc)) : null, isFinite(m.discPct)? "감정가 대비 "+Math.abs(m.discPct).toFixed(1)+"%" : "");
+    set("oPyeong", (isFinite(m.landPy)&&isFinite(m.floorPy))? py(m.land)+"평 / "+py(m.floor)+"평" : null);
+    set("oPpp", isFinite(m.ppp)? comma(m.ppp)+"만" : null, "대지 1평당");
+    set("oPerUnit", isFinite(m.perUnit)? comma(m.perUnit)+"만" : null, isFinite(m.units)? m.units+"룸 기준" : "");
+  }
+
+  function T1(m){ return [
+"[매물 접수] 기장읍 대라리 원룸건물 「라온빌」 통매매 · 월 "+won(m.rent),
+"",
+"■ 소재지    부산 기장군 기장읍 대라리 167-14 (라온빌)",
+"■ 종별      다가구 원룸건물 / 임대 중",
+"■ 규모      지상 "+m.sFloors+"층 · 총 "+m.sUnits+"룸",
+"■ 대지      "+m.land+"㎡ ("+py(m.land)+"평)",
+"■ 연면적    "+m.floor+"㎡ ("+py(m.floor)+"평)",
+"■ 준공      "+m.sYear,
+"■ 주차      "+m.sPark,
+"■ 임대현황  보증금 합계 "+won(m.dep)+" / 월세 합계 "+won(m.rent),
+"■ 융자      "+(m.loan>0 ? won(m.loan)+" · 새마을금고 · 연 "+m.rate+"% · 승계 가능(금융기관 심사에 따름)" : "없음"),
+"■ 매매가    "+won(m.price),
+"■ 감정가    "+won(m.appr)+" (새마을금고 대출용 외부공인감정)",
+"■ 수익률    표면 "+m.yld.toFixed(2)+"%"+(m.loan>0 ? "  /  융자 승계 시 실투자 "+won(m.equity)+" · 연 "+won(m.netInc)+" · "+m.lev.toFixed(2)+"%" : ""),
+"■ 명도      현 임대 승계 / 즉시 입주 가능 호실 있음",
+"■ 입지      기장읍사무소·기장군선거관리위원회 인접 / 대청초 도보권 / 동해선 기장역 도보권",
+"■ 연락      "+m.sOwner+"  "+m.sPhone+"  (소유주 직접)",
+"",
+"※ 일반중개로 접수드립니다. 공동중개 환영합니다.",
+"※ 등기부·건축물대장·임대차현황표·사진자료는 요청 즉시 보내드립니다.",
+"※ 네이버 부동산 등록 부탁드립니다."
+  ].join("\n"); }
+
+  function T2(m){ return [
+"안녕하세요. 기장읍 대라리 167-14 「라온빌」 원룸건물 매도 건으로 연락드립니다.",
+"",
+"· 지상 "+m.sFloors+"층 "+m.sUnits+"룸 / 대지 "+m.land+"㎡("+py(m.land)+"평) · 연면적 "+m.floor+"㎡("+py(m.floor)+"평)",
+"· 보증금 합계 "+won(m.dep)+" · 월세 합계 "+won(m.rent)+" (연 "+won(m.annual)+")",
+"· 매매 "+won(m.price)+" · 표면 수익률 "+m.yld.toFixed(2)+"%",
+"· 감정가 "+won(m.appr)+" (새마을금고 대출용 외부공인감정)",
+(m.loan>0 ? "· 새마을금고 대출 "+won(m.loan)+" 승계 가능 (연 "+m.rate+"%, 금융기관 심사에 따름)\n· 승계 시 실투자 약 "+won(m.equity)+" → 연 "+won(m.netInc)+" · 수익률 "+m.lev.toFixed(2)+"%" : "· 융자 없음"),
+"",
+"기장읍사무소 바로 인접이고 기장역 도보권입니다.",
+"일반중개로 내놓고 있고 공동중개도 환영합니다.",
+"사진·임대차현황표 자료 보내드릴까요?",
+"",
+m.sOwner+" "+m.sPhone+" · 소유주 직접"
+  ].join("\n"); }
+
+  function T3(m){ return [
+"【제목】",
+"기장읍 대라리 원룸건물 통매매 · "+m.sFloors+"층 "+m.sUnits+"룸 월 "+won(m.rent)+" (소유주 직접)",
+"",
+"【본문】",
+"기장읍사무소 바로 인근 대라리에 있는 원룸건물(라온빌)을 매도합니다. 소유주가 직접 올리는 글입니다.",
+"",
+"▪ 위치 : 부산 기장군 기장읍 대라리 167-14",
+"▪ 규모 : 지상 "+m.sFloors+"층, 총 "+m.sUnits+"룸",
+"▪ 대지 : "+m.land+"㎡ (약 "+Math.round(m.landPy)+"평)",
+"▪ 연면적 : "+m.floor+"㎡ (약 "+Math.round(m.floorPy)+"평)",
+"▪ 준공 : "+m.sYear,
+"▪ 주차 : "+m.sPark,
+"",
+"▪ 현재 임대 : 보증금 합계 "+won(m.dep)+" / 월세 합계 "+won(m.rent),
+"▪ 매매가 : "+won(m.price),
+"▪ 감정가 : "+won(m.appr)+" (새마을금고 대출용 외부공인감정)",
+(m.loan>0 ? "▪ 대출 : 새마을금고 "+won(m.loan)+", 연 "+m.rate+"%, 승계 가능 (금융기관 심사에 따름)" : "▪ 대출 : 없음"),
+"",
+(m.loan>0 ? "대출을 승계하시면 실투자금 약 "+won(m.equity)+"으로 연 "+won(m.netInc)+", 수익률 "+m.lev.toFixed(2)+"% 수준입니다. " : "")+"표면 수익률은 "+m.yld.toFixed(2)+"%이며, 재산세·수선비·공실은 반영하지 않은 금액입니다.",
+"",
+"기장읍사무소와 기장군선거관리위원회가 바로 인접한 자리입니다. 대청초등학교와 동해선 기장역이 도보권이라 원룸 임차 수요가 꾸준한 위치이고, 현재 즉시 입주 가능한 호실도 있습니다.",
+"",
+"등기부등본·건축물대장·임대차현황표 모두 준비되어 있어 요청하시면 바로 보내드립니다. 건물 내부도 편하신 시간에 안내해 드립니다.",
+"",
+"계약은 공인중개사를 통해 안전하게 진행합니다. 편하게 문의 주세요.",
+m.sPhone
+  ].join("\n"); }
+
+  function T4(m){ return [
+"【제목】",
+"[기장 원룸건물 매매] 기장읍사무소 앞 "+m.sFloors+"층 "+m.sUnits+"룸 · 월 "+won(m.rent)+" · 매매 "+won(m.price)+" (대라리 라온빌)",
+"",
+"【본문】",
+"부산 기장군 기장읍 대라리에 있는 원룸건물 매매 물건을 소개합니다. 소유주가 직접 올리는 글이며, 기장 원룸건물 매매를 알아보고 계신 분께 참고가 되었으면 합니다.",
+"",
+"■ 1. 위치 — 기장읍 행정타운 한가운데",
+"",
+"소재지는 부산 기장군 기장읍 대라리 167-14, 건물명은 라온빌입니다. 기장읍사무소와 기장군선거관리위원회가 바로 인접한 블록이고, 대청초등학교가 도보권, 동해선 기장역도 걸어서 갈 수 있는 거리입니다. 관공서와 학교가 붙어 있는 자리라 원룸 임차 수요가 특정 계절에 몰리지 않고 연중 꾸준한 편입니다. 기장 원룸건물 중에서도 공실 위험이 낮은 입지에 해당합니다.",
+"",
+"■ 2. 건물 개요",
+"",
+"· 지상 "+m.sFloors+"층 / 총 "+m.sUnits+"룸",
+"· 대지면적 "+m.land+"㎡ ("+py(m.land)+"평)",
+"· 연면적 "+m.floor+"㎡ ("+py(m.floor)+"평)",
+"· 준공 "+m.sYear,
+"· 주차 "+m.sPark,
+"",
+"■ 3. 임대 현황과 수익률",
+"",
+"현재 보증금 합계 "+won(m.dep)+", 월세 합계 "+won(m.rent)+"이 나오고 있습니다. 연 임대수입은 "+won(m.annual)+"입니다.",
+"매매가 "+won(m.price)+" 기준으로 보증금을 제외한 실매수금은 "+won(m.net)+"이고, 표면 수익률은 "+m.yld.toFixed(2)+"%입니다.",
+"(표면 수익률은 재산세·수선비·공실을 반영하지 않은 총수입 기준입니다.)",
+"",
+(m.loan>0
+ ? "■ 4. 대출 승계 — 실투자 "+won(m.equity)+"\n\n새마을금고 대출 "+won(m.loan)+"이 연 "+m.rate+"%로 설정되어 있고 승계가 가능합니다(금융기관 심사에 따릅니다). 승계하실 경우 실투자금은 약 "+won(m.equity)+"이고, 이자를 뺀 연 순수입이 "+won(m.netInc)+"으로 실투자금 대비 "+m.lev.toFixed(2)+"%가 됩니다. 현재보다 낮은 금리로 대환하시면 수익률은 더 올라갑니다."
+ : "■ 4. 융자\n\n현재 설정된 융자는 없습니다."),
+"",
+"■ 5. 가격",
+"",
+"매매 희망가는 "+won(m.price)+"입니다. 새마을금고 대출용 외부공인감정 금액이 "+won(m.appr)+"으로, 감정 금액보다 "+won(Math.abs(m.disc))+" 낮은 가격입니다. (해당 감정은 대출 실행을 위한 감정으로, 시장 시세 평가와는 성격이 다릅니다.)",
+"",
+"■ 6. 문의",
+"",
+"등기부등본, 건축물대장, 토지이용계획확인원, 호실별 임대차현황표를 모두 준비해 두었습니다. 요청하시면 바로 보내드리고, 건물 내부도 편하신 시간에 안내해 드립니다. 즉시 입주 가능한 호실도 있습니다.",
+"계약은 공인중개사를 통해 진행하며, 중개사무소를 통한 공동중개도 환영합니다.",
+"",
+m.sOwner+" "+m.sPhone,
+"",
+"#기장원룸건물매매 #기장다가구매매 #기장수익형부동산 #부산원룸건물매매 #기장읍부동산 #대라리원룸건물"
+  ].join("\n"); }
+
+  function T5(m){ return [
+"기장 원룸건물 매매 | 대라리 167-14 라온빌",
+"─────────────────────────────",
+"매매 "+won(m.price)+"  ·  표면 "+m.yld.toFixed(2)+"%",
+"대지 "+m.land+"㎡("+py(m.land)+"평) / 연면적 "+m.floor+"㎡("+py(m.floor)+"평)",
+"지상 "+m.sFloors+"층 · "+m.sUnits+"룸 · 준공 "+m.sYear+" · 주차 "+m.sPark,
+"보증금 "+won(m.dep)+" / 월 "+won(m.rent)+" (연 "+won(m.annual)+")",
+(m.loan>0 ? "융자 "+won(m.loan)+" 승계가능 "+m.rate+"%\n→ 실투자 "+won(m.equity)+" · 연 "+won(m.netInc)+" · "+m.lev.toFixed(2)+"%" : "융자 없음"),
+"감정가 "+won(m.appr)+" (새마을 대출용 외부공인감정)",
+"기장읍사무소 인접 / 기장역 도보권 / 즉시입주 호실 有",
+"─────────────────────────────",
+"문의 "+m.sOwner+" "+m.sPhone+" (소유주 직접)"
+  ].join("\n"); }
+
+  var FN = {t1:T1, t2:T2, t3:T3, t4:T4, t5:T5};
+  var raw = {};
+
+  function render(){
+    var m = model();
+    paint(m);
+    var ready = isFinite(m.price)&&isFinite(m.rent)&&isFinite(m.dep)&&isFinite(m.land)&&isFinite(m.floor)&&m.net>0;
+    Object.keys(FN).forEach(function(k){
+      var el = $("tpl-"+k); if(!el) return;
+      if(!ready){
+        raw[k] = "";
+        el.innerHTML = '<mark>[02의 대지 · 연면적 · 보증금 · 월세 · 매매가를 채우면 문구가 생성됩니다]</mark>';
+        return;
+      }
+      var s = FN[k](m);
+      raw[k] = toText(s);
+      el.innerHTML = toHtml(s);
+    });
+  }
+
+  ["landM2","floorM2","floors","units","year","parking","deposit","rent","loan","rate","price","appraise","owner","phone"].forEach(function(id){
+    var el = $(id); if(!el) return;
+    if(store.f && typeof store.f[id] === "string" && store.f[id] !== "") el.value = store.f[id];
+    el.addEventListener("input", function(){
+      store.f = store.f || {};
+      store.f[id] = el.value;
+      save();
+      render();
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(btn){
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){ b.setAttribute("aria-selected","false"); });
+      Array.prototype.forEach.call(document.querySelectorAll(".panel"), function(p){ p.classList.remove("on"); });
+      btn.setAttribute("aria-selected","true");
+      var p = $(btn.getAttribute("data-p"));
+      if(p) p.classList.add("on");
+    });
+  });
+
+  var toast = $("toast"), tTimer;
+  function flash(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(tTimer);
+    tTimer = setTimeout(function(){ toast.classList.remove("on"); }, 2000);
+  }
+  function fallbackCopy(text){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly","");
+      ta.style.position = "fixed"; ta.style.top = "-1000px";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      flash("복사했습니다 — 그대로 붙여넣으세요");
+    }catch(e){
+      flash("복사에 실패했습니다 — 아래 글을 직접 선택해 주세요");
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".copybtn"), function(btn){
+    btn.addEventListener("click", function(){
+      var text = raw[btn.getAttribute("data-c")] || "";
+      if(!text){ flash("02의 숫자를 먼저 채워 주세요"); return; }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(
+          function(){ flash("복사했습니다 — 그대로 붙여넣으세요"); },
+          function(){ fallbackCopy(text); }
+        );
+      } else { fallbackCopy(text); }
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.checks input[type="checkbox"]'), function(cb){
+    var k = cb.getAttribute("data-k");
+    if(store.c && store.c[k]) cb.checked = true;
+    cb.addEventListener("change", function(){
+      store.c = store.c || {};
+      store.c[k] = cb.checked;
+      save();
+    });
+  });
+
+  render();
+})();
+</script>
